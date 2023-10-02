@@ -1,0 +1,53 @@
+{extends file="main.html"}
+
+{block name=footer}{/block}
+		
+{block name=content}
+
+<section id="banner">
+	<div class="inner">
+		<h2 class="major">Logowanie</h2>
+		<form action="{$conf->action_url}login" method="post">
+			<div class="fields">
+				<div class="field">
+					<label for="login">Login: </label>
+					<input id="login" type="text" name="login" value="{$form->login}" />
+				</div>
+				<div class="field">
+					<label for="pass">Hasło: </label>
+					<input id="pass" type="password" name="pass" value="{$form->pass}" />
+				</div>
+				<div class="field">
+					<input type="submit" value="Wylicz" />
+				</div>
+			</div>
+		</form>
+		<div>
+			{* wyświeltenie listy błędów, jeśli istnieją *}
+			{if $msgs->isError()}
+				<h4>Wystąpiły błędy: </h4>
+				<ol class="err">
+				{foreach $msgs->getErrors() as $err}
+				{strip}
+					<li>{$err}</li>
+				{/strip}
+				{/foreach}
+				</ol>
+			{/if}
+			
+			{* wyświeltenie listy informacji, jeśli istnieją *}
+			{if $msgs->isInfo()}
+				<h4>Informacje: </h4>
+				<ol class="inf">
+				{foreach $msgs->getInfos() as $inf}
+				{strip}
+					<li>{$inf}</li>
+				{/strip}
+				{/foreach}
+				</ol>
+			{/if}
+		</div>
+	</div>
+</section>
+
+{/block}
